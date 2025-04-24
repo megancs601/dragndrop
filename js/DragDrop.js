@@ -2,7 +2,7 @@ import ImageUploader from './ImageLoader.js';
 
 export default class DragDrop {
     constructor() {
-        this.dropZone = document.querySelector('#drop-zone');
+        this.dropZone = document.querySelector('#drop-inner-zone');
         this.uploadedSec = document.querySelector('#uploaded-section');
 
         this.addEventListeners();
