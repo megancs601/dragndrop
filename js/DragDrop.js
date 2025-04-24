@@ -2,8 +2,9 @@ import ImageUploader from './ImageLoader.js';
 
 export default class DragDrop {
     constructor() {
-        this.dropZone = document.querySelector('#drop-zone');
+        this.dropZone = document.querySelector('#drop-inner-zone');
         this.uploadedSec = document.querySelector('#uploaded-section');
+        this.searchZone = document.querySelector('#search-zone');
 
         this.addEventListeners();
     }
@@ -36,13 +37,16 @@ export default class DragDrop {
         this.dropZone.classList.remove('hover');
     }
 
+    // TODO: fix flashing issue when hovering file over search zone
     dragOverHandler(e) {
         e.preventDefault();
         console.log('File(s) in drop zone');
         this.dropZone.classList.add('hover');
+        this.searchZone.classList.add('hide');
     }
 
     dragLeaveHandler() {
         this.dropZone.classList.remove('hover');
+        this.searchZone.classList.remove('hide');
     }
 }

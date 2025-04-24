@@ -11,9 +11,29 @@
     <body>
         <div id="drop-outer-zone" class="shadow">
             <p>Upload your file(s):</p>
-            <div id="drop-zone">
-                <p>Drag & Drop</p>
-                <p class="subtext">Supports JPEG, JPG, PNG</p>
+            <div id="drop-inner-zone">
+                <div id="drop-prompt">
+                    <p class="blue">Drag & Drop</p>
+                    <p class="subtext">Supports JPEG, JPG, PNG</p>
+                </div>
+
+                <div id="search-zone">
+                    <div id="or-split">
+                        <div class="or-line"></div>
+                        <p>OR</p>
+                        <div class="or-line"></div>
+                    </div>
+                    <div id="input-zone">
+                        <!-- <label for="text-input">Paste image link</label> -->
+                        <input
+                            type="text"
+                            id="text-input"
+                            name="text-input"
+                            placeholder="Paste image link"
+                        />
+                        <button id="search-btn">Search</button>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="uploaded-section"></div>
