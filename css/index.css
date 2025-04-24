@@ -25,7 +25,7 @@ body {
     margin: 1em auto;
     padding: 1em 1.5em;
     width: 450px;
-    height: auto;
+    min-height: 276px;
     border: 2px dashed lightgray;
     border-radius: 0.5em;
     display: grid;
@@ -60,6 +60,7 @@ body {
     }
 
     .item {
+        width: auto;
         height: 5em;
         background-color: white;
         padding: 1em 2em;
@@ -74,12 +75,27 @@ body {
             width: auto;
             height: 5em;
         }
+
+        div {
+            display: contents;
+
+            p {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                width: 100%;
+            }
+        }
     }
 }
 
 #search-zone {
     width: 100%;
     grid-row: 5 / span 6;
+
+    &.hide {
+        display: none;
+    }
 
     #or-split {
         display: grid;

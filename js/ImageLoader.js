@@ -1,26 +1,28 @@
 export default class ImageUploader {
-    static createContentContainer(file) {
+    static createContentContainer(file, src = '') {
         const list = document.createElement('ul');
         const item = document.createElement('li');
         item.classList.add('item', 'shadow');
 
-        const img = ImageUploader.createImage(file);
+        const img = ImageUploader.createImage(file, src);
 
-        const fileName = document.createElement('p');
-        fileName.innerText = file.name;
+        const imgName = document.createElement('p');
+        imgName.innerText = file ? file.name : src;
+
+        const nameContainer = document.createElement('div');
+        nameContainer.appendChild(imgName);
 
         item.appendChild(img);
-        item.appendChild(fileName);
+        item.appendChild(nameContainer);
         list.appendChild(item);
 
         return list;
     }
 
-    static createImage(file) {
+    static createImage(file, src) {
         const img = document.createElement('img');
         img.crossOrigin = 'anonymous ';
-
-        img.src = URL.createObjectURL(file);
+        img.src = file ? URL.createObjectURL(file) : src;
 
         return img;
     }
