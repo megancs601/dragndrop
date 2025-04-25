@@ -30,8 +30,17 @@
                             d="M382.76,578.11c-3.44,11.37-14.57,18.83-26.18,19.82H120.38c-11.61-.99-22.74-8.45-26.18-19.82-2.56-8.45-2.46-55.4-1.28-65.72,1.69-14.82,20.95-19.62,30.54-8.54.67.79,3.46,5.11,3.46,5.54v53.5h223.12v-53.5c0-.43,2.79-4.75,3.46-5.54,9.59-11.08,28.85-6.28,30.54,8.54,1.18,10.32,1.28,57.27-1.28,65.72Z"
                         />
                     </svg>
-                    <p>Drag & Drop</p>
-                    <p class="subtext">Supports JPEG, JPG, PNG</p>
+                    <div>
+                        <p>Drag and drop images here or</p>
+                        <button type="button">upload images</button>
+                        <input
+                            id="image-input"
+                            type="file"
+                            accept="image/png, image/jpeg"
+                            aria-label="upload images"
+                            multiple
+                        />
+                    </div>
                 </div>
 
                 <div id="search-zone">
@@ -40,13 +49,13 @@
                         <p>OR</p>
                         <div class="or-line"></div>
                     </div>
-                    <div id="input-zone">
-                        <!-- <label for="text-input">Paste image link</label> -->
+                    <div id="search-zone">
                         <input
                             type="text"
                             id="text-input"
                             name="text-input"
                             placeholder="Paste image link"
+                            aria-label="Paste image link"
                         />
                         <button id="search-btn">Search</button>
                     </div>
