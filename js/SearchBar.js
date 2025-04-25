@@ -1,11 +1,10 @@
 import ImageUploader from './ImageLoader.js';
 
 export default class SearchBar {
-    constructor() {
+    constructor(uploadedSec) {
         this.textInput = document.querySelector('#text-input');
         this.searchBtn = document.querySelector('#search-btn');
-        this.uploadedSec = document.querySelector('#uploaded-section');
-
+        this.uploadedSec = uploadedSec;
         this.addEventListeners();
     }
 
@@ -19,12 +18,13 @@ export default class SearchBar {
     // RESEARCH: Cheerio or other HTML parsers
     // NOTE: best done using a search engine other than google
     searchBtnClickedHandler() {
-        console.log(this.textInput.value);
-        const content = ImageUploader.createContentContainer(
-            undefined,
-            this.textInput.value
-        );
-        this.uploadedSec?.appendChild(content);
-        this.textInput.value = '';
+        if (this.textInput.value.trim().length) {
+            const content = ImageUploader.createContentContainer(
+                undefined,
+                this.textInput.value
+            );
+            this.uploadedSec?.appendChild(content);
+            this.textInput.value = '';
+        }
     }
 }

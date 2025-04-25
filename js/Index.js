@@ -1,10 +1,14 @@
 import DragDrop from './DragDrop.js';
 import SearchBar from './SearchBar.js';
+import UploadImageFile from './UploadImageFile.js';
 
 export default class Index {
     constructor() {
-        const dragDrop = new DragDrop();
-        const searchBar = new SearchBar();
+        this.uploadedSec = document.querySelector('#uploaded-section');
+
+        const dragDrop = new DragDrop(this.uploadedSec);
+        const searchBar = new SearchBar(this.uploadedSec);
+        const uploadImageFile = new UploadImageFile(this.uploadedSec);
     }
 }
 

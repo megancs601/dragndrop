@@ -52,7 +52,7 @@ body {
         align-content: center;
         justify-items: center;
         grid-row: 1 / span 4;
-        color: #1085fc;
+        color: grey;
 
         p {
             margin: 0 auto;
