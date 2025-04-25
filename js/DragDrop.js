@@ -6,14 +6,22 @@ export default class DragDrop {
         this.searchZone = document.querySelector('#search-zone');
         this.uploadedSec = uploadedSec;
 
+        // dragging files over the drag area sometimes emits the drag leave event
+        // this counter helps with adding and removing the appropriate class names
+        // during the drag start and drag leave events instead.
+        this.counter = 0;
+
         this.addEventListeners();
     }
 
     addEventListeners() {
         this.dropZone?.addEventListener('drop', (e) => this.dropHandler(e));
-        this.dropZone?.addEventListener('dragover', (e) =>
-            this.dragOverHandler(e)
-        );
+        this.dropZone?.addEventListener('dragover', (e) => e.preventDefault());
+
+        this.dropZone?.addEventListener('dragenter', (e) => {
+            this.dragEnterHandler(e);
+        });
+
         this.dropZone?.addEventListener('dragleave', () =>
             this.dragLeaveHandler()
         );
@@ -21,6 +29,7 @@ export default class DragDrop {
 
     dropHandler(e) {
         e.preventDefault();
+
         const items = [...e.dataTransfer.items];
         items.forEach((item) => {
             //check that it is a file and not a directory
@@ -35,15 +44,21 @@ export default class DragDrop {
         this.searchZone.classList.remove('hide');
     }
 
-    // TODO: fix flashing issue when hovering file over search zone
-    dragOverHandler(e) {
+    dragEnterHandler(e) {
         e.preventDefault();
+
+        this.counter++;
+
         this.dropZone.classList.add('hover');
         this.searchZone.classList.add('hide');
     }
 
     dragLeaveHandler() {
-        this.dropZone.classList.remove('hover');
-        this.searchZone.classList.remove('hide');
+        this.counter--;
+
+        if (this.counter === 0) {
+            this.dropZone.classList.remove('hover');
+            this.searchZone.classList.remove('hide');
+        }
     }
 }
