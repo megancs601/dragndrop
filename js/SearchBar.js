@@ -15,7 +15,8 @@ export default class SearchBar {
         );
     }
 
-    // TODO: validate img url
+    // TODO: validate img url.
+    // RESEARCH: Cheerio or other HTML parsers
     // NOTE: best done using a search engine other than google
     searchBtnClickedHandler() {
         console.log(this.textInput.value);
