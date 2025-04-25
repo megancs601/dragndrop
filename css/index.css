@@ -2,6 +2,7 @@ body {
     max-width: 68.125em;
     position: relative;
     margin: 0 auto;
+    padding: 0 1.5em;
     font-size: 1em;
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
@@ -10,30 +11,28 @@ body {
 
 #drop-outer-zone {
     position: relative;
-    width: 550px;
-    height: auto;
+    max-width: 550px;
     margin: 5em auto;
     padding: 2em;
     background-color: white;
     border-radius: 1em;
-    display: grid;
-    justify-content: center;
 }
 
 #drop-inner-zone {
     position: relative;
-    margin: 1em auto;
+    margin: 0 auto;
     padding: 1em 1.5em;
-    width: 500px;
-    min-height: 276px;
     border: 2px dashed lightgray;
     border-radius: 0.5em;
     display: grid;
     justify-items: center;
+    justify-content: center;
     align-content: center;
+    grid-template-columns: 1fr;
     grid-template-rows: repeat(6, 1fr);
 
     &.hover {
+        min-height: 300px;
         border-color: #1085fc;
         background-color: rgba(16, 133, 252, 0.2);
     }
@@ -98,7 +97,7 @@ body {
         display: grid;
         align-items: center;
         grid-template-rows: 1fr;
-        grid-template-columns: 1fr 6em 1fr;
+        grid-template-columns: 1fr auto 1fr;
         grid-row: 4 / span 5;
         margin: 1em auto;
 
@@ -111,11 +110,14 @@ body {
             color: gray;
             margin: 0 auto;
             font-weight: 100;
+            padding: 0 1em;
         }
     }
 
-    #search-zone {
-        display: flex;
+    #search-inputs {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: 1fr;
         gap: 1em;
 
         button {
@@ -134,7 +136,6 @@ body {
         }
 
         input {
-            width: 100%;
             height: 3em;
             border-radius: 3em;
             border: 1px solid rgba(149, 157, 165, 0.3);
@@ -185,4 +186,43 @@ body {
 .shadow {
     border: 1px solid rgba(149, 157, 165, 0.3);
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+@media screen and (max-width: 480px) {
+    #drop-inner-zone {
+        grid-template-rows: repeat(6, auto);
+
+        #drop-prompt {
+            margin: 1em auto;
+            p {
+                display: none;
+            }
+
+            button {
+                text-transform: capitalize;
+            }
+        }
+    }
+
+    #search-zone {
+        #or-split {
+            padding: 0em 1em;
+        }
+
+        #search-inputs {
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr;
+        }
+    }
+
+    #uploaded-section {
+        .item {
+            height: 3em;
+            grid-template-columns: 5em 1fr;
+
+            img {
+                height: 3em;
+            }
+        }
+    }
 }
