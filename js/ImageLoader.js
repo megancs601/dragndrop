@@ -1,3 +1,5 @@
+import CopyButton from './CopyButton.js';
+
 export default class ImageUploader {
     static async createContentContainer(file, src = '') {
         const list = document.createElement('ul');
@@ -16,11 +18,12 @@ export default class ImageUploader {
         item.appendChild(nameContainer);
 
         if (src != '') {
-            const copyBtn = await this.createCopyButton();
+            const copyBtn = await new CopyButton(src).create();
             item.appendChild(copyBtn);
         }
 
         list.appendChild(item);
+
         return list;
     }
 
@@ -30,23 +33,5 @@ export default class ImageUploader {
         img.src = file ? URL.createObjectURL(file) : src;
 
         return img;
-    }
-
-    static async createCopyButton() {
-        const copyBtn = document.createElement('button');
-        copyBtn.id = 'copy-button';
-
-        const res = await fetch('./media/copy-regular.svg');
-        const svgText = await res.text();
-
-        const parser = new DOMParser();
-        const svgDOM = parser.parseFromString(svgText, 'image/svg+xml');
-        const svgElement = svgDOM.documentElement;
-        svgElement.id = 'copy-icon';
-        svgElement.alt = 'copy image url';
-
-        copyBtn.appendChild(svgElement);
-
-        return copyBtn;
     }
 }
