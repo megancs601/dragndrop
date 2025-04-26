@@ -166,7 +166,7 @@ body {
         padding: 1em 2em;
         border-radius: 0.5em;
         display: grid;
-        grid-template-columns: 10em 1fr;
+        grid-template-columns: 10em 1fr auto;
         gap: 1em;
         justify-items: start;
         align-items: center;
@@ -184,6 +184,24 @@ body {
                 text-overflow: ellipsis;
                 white-space: nowrap;
                 width: 100%;
+            }
+        }
+
+        #copy-button {
+            background-color: transparent;
+            border: none;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            svg {
+                width: 1.5em;
+                height: auto;
+
+                &:hover {
+                    fill: #1085fc;
+                }
             }
         }
     }
@@ -220,7 +238,7 @@ body {
     #uploaded-section {
         .item {
             height: 3em;
-            grid-template-columns: 5em 1fr;
+            grid-template-columns: 5em 1fr auto;
 
             img {
                 height: 3em;

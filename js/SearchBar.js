@@ -6,6 +6,8 @@ export default class SearchBar {
         this.searchBtn = document.querySelector('#search-btn');
         this.errorMessage = document.querySelector('#error-message');
         this.uploadedSec = uploadedSec;
+        this.error = '';
+
         this.addEventListeners();
     }
 
@@ -23,14 +25,9 @@ export default class SearchBar {
             const validImage = await this.isValidImage();
 
             if (validImage) {
-                const content = ImageUploader.createContentContainer(
-                    undefined,
-                    this.textInput.value
-                );
-                this.uploadedSec?.appendChild(content);
+                this.addImage();
             } else {
-                this.errorMessage.innerText =
-                    'Sorry, image could not be uploaded';
+                this.errorMessage.innerText = this.error;
             }
         }
 
@@ -41,20 +38,33 @@ export default class SearchBar {
         try {
             const response = await fetch(this.textInput.value.trim());
             if (!response.ok) {
-                console.log('unsuccessful request');
+                this.error = 'Sorry, there was an unsuccessful request.';
                 return false;
             }
 
             const buff = await response.blob();
             if (buff.type.startsWith('image/')) {
+                this.error = '';
                 return true;
             }
 
-            console.log('url is not of type image');
+            this.error = 'Sorry, url provided is not an image.';
+
             return false;
         } catch (error) {
             console.log(error);
+            this.error = 'Sorry, image could not be uploaded.';
+
             return false;
         }
+    }
+
+    async addImage() {
+        const content = await ImageUploader.createContentContainer(
+            undefined,
+            this.textInput.value
+        );
+
+        this.uploadedSec?.appendChild(content);
     }
 }

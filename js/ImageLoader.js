@@ -1,5 +1,5 @@
 export default class ImageUploader {
-    static createContentContainer(file, src = '') {
+    static async createContentContainer(file, src = '') {
         const list = document.createElement('ul');
         const item = document.createElement('li');
         item.classList.add('item', 'shadow');
@@ -14,8 +14,13 @@ export default class ImageUploader {
 
         item.appendChild(img);
         item.appendChild(nameContainer);
-        list.appendChild(item);
 
+        if (src != '') {
+            const copyBtn = await this.createCopyButton();
+            item.appendChild(copyBtn);
+        }
+
+        list.appendChild(item);
         return list;
     }
 
@@ -25,5 +30,23 @@ export default class ImageUploader {
         img.src = file ? URL.createObjectURL(file) : src;
 
         return img;
+    }
+
+    static async createCopyButton() {
+        const copyBtn = document.createElement('button');
+        copyBtn.id = 'copy-button';
+
+        const res = await fetch('./media/copy-regular.svg');
+        const svgText = await res.text();
+
+        const parser = new DOMParser();
+        const svgDOM = parser.parseFromString(svgText, 'image/svg+xml');
+        const svgElement = svgDOM.documentElement;
+        svgElement.id = 'copy-icon';
+        svgElement.alt = 'copy image url';
+
+        copyBtn.appendChild(svgElement);
+
+        return copyBtn;
     }
 }
