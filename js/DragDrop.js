@@ -31,11 +31,13 @@ export default class DragDrop {
         e.preventDefault();
 
         const items = [...e.dataTransfer.items];
-        items.forEach((item) => {
+        items.forEach(async (item) => {
             //check that it is a file and not a directory
             if (item.kind === 'file' && item.type != '') {
                 const file = item.getAsFile();
-                const content = ImageUploader.createContentContainer(file);
+                const content = await ImageUploader.createContentContainer(
+                    file
+                );
                 this.uploadedSec?.appendChild(content);
             }
         });

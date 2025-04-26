@@ -85,6 +85,12 @@ body {
     }
 }
 
+#error-message {
+    margin: 0 auto;
+    text-align: center;
+    font-weight: 100;
+}
+
 #search-zone {
     width: 100%;
     grid-row: 5 / span 6;
@@ -160,7 +166,7 @@ body {
         padding: 1em 2em;
         border-radius: 0.5em;
         display: grid;
-        grid-template-columns: 10em 1fr;
+        grid-template-columns: 10em 1fr auto;
         gap: 1em;
         justify-items: start;
         align-items: center;
@@ -178,6 +184,24 @@ body {
                 text-overflow: ellipsis;
                 white-space: nowrap;
                 width: 100%;
+            }
+        }
+
+        #copy-button {
+            background-color: transparent;
+            border: none;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            svg {
+                width: 1.5em;
+                height: auto;
+
+                &:hover {
+                    fill: #1085fc;
+                }
             }
         }
     }
@@ -205,10 +229,6 @@ body {
     }
 
     #search-zone {
-        #or-split {
-            padding: 0em 1em;
-        }
-
         #search-inputs {
             grid-template-columns: 1fr;
             grid-template-rows: 1fr 1fr;
@@ -218,7 +238,7 @@ body {
     #uploaded-section {
         .item {
             height: 3em;
-            grid-template-columns: 5em 1fr;
+            grid-template-columns: 5em 1fr auto;
 
             img {
                 height: 3em;

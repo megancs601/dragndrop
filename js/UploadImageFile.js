@@ -20,8 +20,8 @@ export default class UploadImageFile {
         let content = undefined;
 
         if (this.imageInput.files.length > 0) {
-            [...this.imageInput.files].forEach((file) => {
-                content = ImageUploader.createContentContainer(file);
+            [...this.imageInput.files].forEach(async (file) => {
+                content = await ImageUploader.createContentContainer(file);
                 this.uploadedSec?.appendChild(content);
             });
         }

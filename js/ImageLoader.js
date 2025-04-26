@@ -1,5 +1,7 @@
+import CopyButton from './CopyButton.js';
+
 export default class ImageUploader {
-    static createContentContainer(file, src = '') {
+    static async createContentContainer(file, src = '') {
         const list = document.createElement('ul');
         const item = document.createElement('li');
         item.classList.add('item', 'shadow');
@@ -14,6 +16,12 @@ export default class ImageUploader {
 
         item.appendChild(img);
         item.appendChild(nameContainer);
+
+        if (src != '') {
+            const copyBtn = await new CopyButton(src).create();
+            item.appendChild(copyBtn);
+        }
+
         list.appendChild(item);
 
         return list;
