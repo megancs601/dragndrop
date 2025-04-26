@@ -85,6 +85,12 @@ body {
     }
 }
 
+#error-message {
+    margin: 0 auto;
+    text-align: center;
+    font-weight: 100;
+}
+
 #search-zone {
     width: 100%;
     grid-row: 5 / span 6;
@@ -205,10 +211,6 @@ body {
     }
 
     #search-zone {
-        #or-split {
-            padding: 0em 1em;
-        }
-
         #search-inputs {
             grid-template-columns: 1fr;
             grid-template-rows: 1fr 1fr;
