@@ -1,4 +1,4 @@
-# ABOUT
+# About
 
 A small personal research project to learn how to:
 
@@ -7,7 +7,7 @@ A small personal research project to learn how to:
 * copy text to clipboard
 * use css grid layout
 
-## HOW to BUILD
+## How to Build
 1. Open project in VScode
 2. Install Live Server extension [https://marketplace.visualstudio.com/items/?itemName=ritwickdey.LiveServer]
 3. Click `Go Live` from the VScode status bar
